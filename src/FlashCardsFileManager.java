@@ -9,6 +9,7 @@ public class FlashCardsFileManager {
 
     private final String fileName = "src/QnA.txt";
     public static int counter = 0; // static
+    public static boolean ansVis=false;
     private QnA quesAndAnsObj;
     private float progress;
 
@@ -47,7 +48,12 @@ public class FlashCardsFileManager {
         if (qnaArrayList.size() == 0) {
             loadFile();
         } else {
+            if(ansVis){
+                ansVis=false;
             counter++;
+            }else{
+                ansVis=true;
+            }
         }
         Utils.loopFromStartToEndAndViceVersa(qnaArrayList.size());
         progress = Utils.updateProgress(counter + 1, qnaArrayList.size());

@@ -41,7 +41,11 @@ public class Controller {
     private void nextButtonClicked() throws Exception{
         currentQuestionAndAnswer = manager.getNextQnA();
         try{
+            if(FlashCardsFileManager.ansVis){
             labelAnswer.setText(currentQuestionAndAnswer.getAnswer());
+            }else{
+                labelAnswer.setText("Answer here");
+            }
             labelQuestion.setText(currentQuestionAndAnswer.getQuestion());        
         } catch (Exception e) {
             System.out.println("exception thrown!");
