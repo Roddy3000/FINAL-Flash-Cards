@@ -8,8 +8,8 @@ public class FlashCardsFileManager {
     ArrayList<QnA> qnaArrayList = new ArrayList<QnA>();
 
     private final String fileName = "src/QnA.txt";
-    public static int counter = 0; // static
-    public static boolean ansVis=false;
+    public static int counter = 0;
+    public static boolean answerVisible = false;
     private QnA quesAndAnsObj;
     private float progress;
 
@@ -48,18 +48,16 @@ public class FlashCardsFileManager {
         if (qnaArrayList.size() == 0) {
             loadFile();
         } else {
-            if(ansVis){
-                ansVis=false;
-            counter++;
-            }else{
-                ansVis=true;
+            if (answerVisible) {
+                answerVisible = false;
+                counter++;
+            } else {
+                answerVisible = true;
             }
         }
-        Utils.loopFromStartToEndAndViceVersa(qnaArrayList.size());
+        Utils.loopFromStartToEnd(qnaArrayList.size());
         progress = Utils.updateProgress(counter + 1, qnaArrayList.size());
-
         System.out.println("Progress: " + progress); // TODO remove it later
-
         return qnaArrayList.get(counter);
     }
 
@@ -70,9 +68,9 @@ public class FlashCardsFileManager {
         } else {
             counter--;
         }
-        Utils.loopFromStartToEndAndViceVersa(qnaArrayList.size());
+        Utils.loopFromStartToEnd(qnaArrayList.size());
         progress = Utils.updateProgress(counter + 1, qnaArrayList.size());
-
+        System.out.println("Progress: " + progress);
         return qnaArrayList.get(counter);
     }
 
