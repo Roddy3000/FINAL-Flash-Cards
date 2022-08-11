@@ -1,24 +1,12 @@
 public class Utils {
-    // FlashCardsFileManager manager = new FlashCardsFileManager();
 
     public static void loopFromStartToEnd(int lastValue) { // shorten the name
-        if (FlashCardsFileManager.counter < 0) {
-            FlashCardsFileManager.counter = lastValue - 1;
-        } else if (FlashCardsFileManager.counter >= lastValue) {
-            FlashCardsFileManager.counter = 0;
+        if (FlashCardsFileManager.getCounter() < 0) {
+            FlashCardsFileManager.setCounter(lastValue - 1);
+        } else if (FlashCardsFileManager.getCounter() >= lastValue) {
+            FlashCardsFileManager.setCounter(0);
         }
     }
-
-    // public double progress() {
-    // try{
-    // return ((fileObj.getCounter()+1)/(fileObj.qnaArrayList.size()+1)); //int/int,
-    // replace it to FM class
-    // }
-    // catch(Exception e){
-    // System.out.println("error caught in progress method()!");
-    // }
-    // return 0;
-    // }
 
     public static float updateProgress(float currentIndex, float totalValues) {
         float prog = (currentIndex / totalValues);

@@ -1,17 +1,23 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 // import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FlashCardsFileManager {
 
-    ArrayList<QnA> qnaArrayList = new ArrayList<QnA>();
+    public ArrayList<QnA> qnaArrayList = new ArrayList<QnA>();
 
     private final String fileName = "src/QnA.txt";
-    public static int counter = 0;
+    private static int counter = 0;
     public static boolean answerVisible = false;
     private QnA quesAndAnsObj;
     private float progress;
+
+    public static void setCounter(int counter) {
+        FlashCardsFileManager.counter = counter;
+    }
 
     public float getProgress() {
         return progress;
@@ -21,7 +27,7 @@ public class FlashCardsFileManager {
         return fileName;
     }
 
-    public int getCounter() {
+    public static int getCounter() {
         return counter;
     }
 
@@ -74,4 +80,13 @@ public class FlashCardsFileManager {
         return qnaArrayList.get(counter);
     }
 
+    public void addQnaToList() throws FileNotFoundException {
+        File file = new File(fileName);
+        try (PrintWriter printWriter = new PrintWriter(file)) {
+
+        } catch (Exception e) {
+            System.out.println("Exception caught inside of addqnatolist method");
+            System.out.println(e.getMessage());
+        }
+    }
 }
