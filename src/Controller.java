@@ -5,9 +5,12 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Cell;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tooltip;
@@ -56,7 +59,7 @@ public class Controller {
 
     @FXML
     void revealAnswer(ActionEvent event) {
-
+//TODO continue here
     }
 
     @FXML
@@ -67,6 +70,7 @@ public class Controller {
                 labelAnswer.setText(currentQuestionAndAnswer.getAnswer());
             } else {
                 labelAnswer.setText("Answer here");
+                labelAnswer.setContentDisplay(ContentDisplay.CENTER);
             }
             labelQuestion.setText(currentQuestionAndAnswer.getQuestion());
         } catch (Exception e) {
@@ -81,15 +85,13 @@ public class Controller {
         currentQuestionAndAnswer = manager.getPrevQnA();
         try {
             labelQuestion.setText(currentQuestionAndAnswer.getQuestion());
+            labelQuestion.setContentDisplay(ContentDisplay.CENTER);
             labelAnswer.setText(currentQuestionAndAnswer.getAnswer());
+            labelAnswer.setContentDisplay(ContentDisplay.CENTER);
         } catch (Exception e) {
             System.out.println("exception thrown!");
         }
         updateProgressBar();
-    }
-
-    private void updateProgressBar() {
-        progressBar.setProgress(manager.getProgress());
     }
 
     @FXML
@@ -110,6 +112,10 @@ public class Controller {
         } catch (Exception e) {
             System.out.println("Exception thrown! inside of addQnA");
         }
+    }
+
+    private void updateProgressBar() {
+        progressBar.setProgress(manager.getProgress());
     }
 
 }
