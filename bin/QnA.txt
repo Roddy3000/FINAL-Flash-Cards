@@ -1,6 +1,11 @@
-1,,What is abstract method?,,A method that is declared without an implementation! -cannot have a body -cannot be used to create objects -must be inherited
-2,,What type of relationship is it when one class borns and dies with another class?,,Composition!
-3,,wah,,zee
-4,,heh,,bee
-5,,woo,,yoo
-6,,what is my cousin's name?,,Samar Kaushal aka DON SAAB!
+1,,sdsjdgsa,,kshdgahksdgkhs
+2,,sup,,dup
+3,,ree,,wee
+4,,game,,tame
+5,,rambo,,bamboo
+6,,heyo,,swayo
+7,,iiiiiiiiiiiiiii,,eeeeeeeeeeee
+8,,bla bla bla,,hater
+9,,drum roll,,zeeeeeeee
+10,,ahoyy,,aiiiiiii
+11,,howww,,weee

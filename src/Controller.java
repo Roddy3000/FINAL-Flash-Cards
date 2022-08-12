@@ -40,10 +40,24 @@ public class Controller {
     private ProgressBar progressBar;
 
     @FXML
+    private Button showAnswer;
+
+    @FXML
     private Tooltip toolTip;
 
+    @FXML
+    private Label progressLabel;
+
     public QnA currentQuestionAndAnswer = null;
-    FlashCardsFileManager manager = new FlashCardsFileManager();
+
+    public static QnaAccessor manager = new QnaAccessor();
+    static Parent newWin;
+    public static Stage secondaryStage;
+
+    @FXML
+    void revealAnswer(ActionEvent event) {
+
+    }
 
     @FXML
     private void nextButtonClicked() throws Exception {
@@ -80,15 +94,15 @@ public class Controller {
 
     @FXML
     private void exitWithNoError(ActionEvent event) {
-        System.out.println("Exiting the application with no error!");
+        System.out.println("\nExiting the application with no error!\n");
         System.exit(0);
     }
 
     @FXML
     private void addsQuestionNAnswer(ActionEvent event) throws Exception {
         try {
-            Parent newWin = FXMLLoader.load(getClass().getResource("newWindow.fxml"));
-            Stage secondaryStage = new Stage();
+            newWin = FXMLLoader.load(getClass().getResource("newWindow.fxml"));
+            secondaryStage = new Stage();
             secondaryStage.setScene(new Scene(newWin));
             secondaryStage.setTitle("Add new Question and Answers!");
             secondaryStage.initModality(Modality.APPLICATION_MODAL);

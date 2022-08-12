@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 // import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,13 +8,13 @@ import java.util.Scanner;
 
 public class FlashCardsFileManager {
 
-    public ArrayList<QnA> qnaArrayList = new ArrayList<QnA>();
+    public static ArrayList<QnA> qnaArrayList = new ArrayList<QnA>();
 
     private final String fileName = "src/QnA.txt";
-    private static int counter = 0;
+    public static int counter = 0;
     public static boolean answerVisible = false;
     private QnA quesAndAnsObj;
-    private float progress;
+    public float progress;
 
     public static void setCounter(int counter) {
         FlashCardsFileManager.counter = counter;
@@ -49,41 +50,14 @@ public class FlashCardsFileManager {
         }
     }
 
-    public QnA getNextQnA() throws Exception {
-
+    public void addQnaToList(String que, String ans) throws Exception {
         if (qnaArrayList.size() == 0) {
             loadFile();
-        } else {
-            if (answerVisible) {
-                answerVisible = false;
-                counter++;
-            } else {
-                answerVisible = true;
-            }
         }
-        Utils.loopFromStartToEnd(qnaArrayList.size());
-        progress = Utils.updateProgress(counter + 1, qnaArrayList.size());
-        System.out.println("Progress: " + progress); // TODO remove it later
-        return qnaArrayList.get(counter);
-    }
-
-    public QnA getPrevQnA() throws Exception {
-
-        if (qnaArrayList.size() == 0) {
-            loadFile();
-        } else {
-            counter--;
-        }
-        Utils.loopFromStartToEnd(qnaArrayList.size());
-        progress = Utils.updateProgress(counter + 1, qnaArrayList.size());
-        System.out.println("Progress: " + progress);
-        return qnaArrayList.get(counter);
-    }
-
-    public void addQnaToList() throws FileNotFoundException {
-        File file = new File(fileName);
-        try (PrintWriter printWriter = new PrintWriter(file)) {
-
+        qnaArrayList.add(new QnA(qnaArrayList.size() + 1, que, ans));
+        try (PrintWriter printWriter = new PrintWriter(new FileOutputStream(fileName, true))) {
+            printWriter.print("\n" + Integer.toString(qnaArrayList.size()) + ",," + que + ",," + ans);
+            // loadFile();
         } catch (Exception e) {
             System.out.println("Exception caught inside of addqnatolist method");
             System.out.println(e.getMessage());
