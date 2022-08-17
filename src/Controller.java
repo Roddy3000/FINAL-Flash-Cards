@@ -1,21 +1,17 @@
-// import java.io.FileNotFoundException;
-
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
+// import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
-import javafx.scene.control.ContentDisplay;
+// import javafx.scene.control.Cell;
+// import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Modality;
-import javafx.stage.PopupWindow;
+// import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -46,60 +42,86 @@ public class Controller {
     private Button showAnswer;
 
     @FXML
-    private Tooltip toolTip;
+    private Tooltip toolTip1;
 
     @FXML
     private Label progressLabel;
 
-    public QnA currentQuestionAndAnswer = null;
+    private QnA currentQuestionAndAnswer = null;
 
-    public static QnaAccessor manager = new QnaAccessor();
-    static Parent newWin;
+    private QnaAccessor quesAndAns = new QnaAccessor();
+    private Parent newWin;
     public static Stage secondaryStage;
 
+    
+    /** 
+     * Event handler for revealing the answer
+     * @param event
+     * @throws Exception
+     */
     @FXML
-    void revealAnswer(ActionEvent event) {
-//TODO continue here
+    void revealAnswer(ActionEvent event) throws Exception {
+        if (FlashCardsFileManager.qnaArrayList.size() == 0) {
+            labelAnswer.setText("Please load the file by clicking the next button!");
+        }
+        else{
+            labelAnswer.setText(currentQuestionAndAnswer.getAnswer());
+        }
+    
     }
 
+    
+    /**
+     * Event handler for clicking of next button 
+     * @throws Exception
+     */
     @FXML
     private void nextButtonClicked() throws Exception {
-        currentQuestionAndAnswer = manager.getNextQnA();
+        toolTip1.setShowDelay(Duration.seconds(0.2));
+        currentQuestionAndAnswer = quesAndAns.getNextQnA();
         try {
-            if (FlashCardsFileManager.answerVisible) {
-                labelAnswer.setText(currentQuestionAndAnswer.getAnswer());
-            } else {
-                labelAnswer.setText("Answer here");
-                labelAnswer.setContentDisplay(ContentDisplay.CENTER);
-            }
             labelQuestion.setText(currentQuestionAndAnswer.getQuestion());
+            labelAnswer.setText("Answer here!");
         } catch (Exception e) {
-            System.out.println("exception thrown!");
+            System.out.println("Exception thrown in next button!");
         }
         updateProgressBar();
-        toolTip.setShowDelay(Duration.seconds(0.2));
     }
 
+    
+    /** 
+     * Event handler for clicking of previous button
+     * @throws Exception
+     */
     @FXML
     private void previousButtonClicked() throws Exception {
-        currentQuestionAndAnswer = manager.getPrevQnA();
+        currentQuestionAndAnswer = quesAndAns.getPrevQnA();
         try {
             labelQuestion.setText(currentQuestionAndAnswer.getQuestion());
-            labelQuestion.setContentDisplay(ContentDisplay.CENTER);
-            labelAnswer.setText(currentQuestionAndAnswer.getAnswer());
-            labelAnswer.setContentDisplay(ContentDisplay.CENTER);
+            labelAnswer.setText("Answer here!");
         } catch (Exception e) {
             System.out.println("exception thrown!");
         }
         updateProgressBar();
     }
 
+    
+    /** 
+     * event handler for exiting the gui
+     * @param event
+     */
     @FXML
     private void exitWithNoError(ActionEvent event) {
         System.out.println("\nExiting the application with no error!\n");
         System.exit(0);
     }
 
+    
+    /** 
+     * Event handler for adding a question
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void addsQuestionNAnswer(ActionEvent event) throws Exception {
         try {
@@ -111,11 +133,27 @@ public class Controller {
             secondaryStage.show();
         } catch (Exception e) {
             System.out.println("Exception thrown! inside of addQnA");
+            System.out.println(e.getStackTrace());
+            // System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * updation of the progress bar
+     */
     private void updateProgressBar() {
-        progressBar.setProgress(manager.getProgress());
+        progressBar.setProgress(quesAndAns.getProgress());
+        updateProgressLabel();
+    }
+
+    /**
+     * updating the progress label
+     */
+    public void updateProgressLabel(){
+        int index = currentQuestionAndAnswer.getQuestionIndex();
+        int total = FlashCardsFileManager.qnaArrayList.size();
+        String prog = Integer.toString(index) + "/" + Integer.toString(total);
+        progressLabel.setText(prog);
     }
 
 }

@@ -1,11 +1,13 @@
-1,,sdsjdgsa,,kshdgahksdgkhs
-2,,sup,,dup
-3,,ree,,wee
-4,,game,,tame
-5,,rambo,,bamboo
-6,,heyo,,swayo
-7,,iiiiiiiiiiiiiii,,eeeeeeeeeeee
-8,,bla bla bla,,hater
-9,,drum roll,,zeeeeeeee
-10,,ahoyy,,aiiiiiii
-11,,howww,,weee
+1,,Information hiding is also often termed as:,,Encapsulation
+2,,Which type of relationship is it when an object of one type borns and dies together with an object of another type (usually another class),,Composition!
+3,,What is the use of PrintWriter class?,,PrintWriter provides advanced methods to write formatted text to the file. It supports all print functions and many arguments like File, String and Writer.
+4,,What is a good pratice while opening/accessing resources in a java code?,, Closing the resource after each use
+5,,What is the purpose of try with resources?,,Whenever a file is opened, it automatically closes the file and prevents any sort of resource leak
+6,,Where are objects stored in the memory?,,In a place on the memory called HEAP.
+7,,What happens to an object on heap which is unreachable (i.e. no reference variable holds it's address),,Such an object gets 'garbage collected'.
+8,,What is the purpose of finally in try-catch-finally method?,,Finally block will be executed, doesn't matter if try block is executed or catch block is...
+9,,Where is the local variable stored?,,It is stored in the current stack frame in the stack memory.
+10,,How does recursion work and what is it?,,We usually call the same method from itself and break this loop using an if...else statement. It breaks complex problems into simpler ones which are easier to solve.
+11,,How is variable passed in java?,,Java only supports 'pass by value'.
+12,,When to use ArrayList and LinkedList in Java?,,Since array provides constant-time search operation, it's better to use ArrayList if search outnumbers add and remove operation, otherwise use LinkedList which provides constant time add and remove operation.
+13,,Difference between Array and ArrayList? Array is static whereas ArrayList is static (i.e. once created, Array's size cannot be changed whilst,,Arraylist adjusts it's size dynamically).

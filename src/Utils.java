@@ -1,8 +1,13 @@
-// import java.io.File;
-// import java.util.Scanner;
-
+/**
+ * Utility class with static methods               
+ */
 public class Utils {
 
+    
+    /** 
+     * method to loop from start to end for the list
+     * @param 0
+     */
     public static void loopFromStartToEnd(int lastValue) { // shorten the name
         if (FlashCardsFileManager.getCounter() < 0) {
             FlashCardsFileManager.setCounter(lastValue - 1);
@@ -11,29 +16,18 @@ public class Utils {
         }
     }
 
+    
+    /** 
+     * updates the progress (for the progress bar)
+     * @param currentIndex
+     * @param totalValues
+     * @return float
+     */
     public static float updateProgress(float currentIndex, float totalValues) {
         float prog = (currentIndex / totalValues);
         return prog;
     }
 
-    // private static String[] localfile;
 
-    // public static String readfile() throws Exception {
-    // localfile=null;
-    // File file = new File("src/QnA.txt");
-    // //TODO here
-    // try (Scanner scan = new Scanner(file)) {
-    // while (scan.hasNextLine()) {
-    // // localfile += scan.nextLine();
-    // localfile = null;
-
-    // }
-    // System.out.print("here is : " +localfile);
-    // return localfile;
-
-    // } catch (Exception e) {
-    // System.out.println("Exception occured: File not found!");
-    // throw e;
-    // }
-    // }
+    //I wanted to add more but it is what it is now :(
 }

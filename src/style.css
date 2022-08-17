@@ -1,0 +1,51 @@
+/* do selected things*/
+Button:hover{
+    -fx-background-color:rgb(248, 151, 24);
+    -fx-text-fill:white;
+    
+    
+    -fx-border-color:transparent;
+}
+Button{
+    -fx-border-width:2px;
+    -fx-border-color:white;
+    -fx-background-color:transparent;
+    -fx-text-fill: white;
+    -fx-border-radius:10px;
+}
+.root{
+    -fx-background-color:black;
+}
+TextField:readonly{
+    -fx-background-color:#121212;
+    -fx-text-fill:white;
+    -fx-border-color:none;
+}
+TextField{
+    -fx-background-color:#121212;
+    -fx-text-fill:white;
+    -fx-border-color: orange;
+    -fx-border-width:2px;
+    -fx-border-style:hidden hidden solid hidden;
+}
+TextArea:readonly{
+    -fx-text-fill:white;
+  
+    -fx-border-color:none;
+}
+TextArea{
+    -fx-border-width:2px;
+    -fx-border-color: orange;
+}
+TextArea .content {
+    -fx-background-color: #121212;
+}
+
+Label{
+    -fx-background-color:black;
+    -fx-text-fill: orange;
+}
+
+.progress-bar > .bar{
+    -fx-background-color: rgb(248, 151, 24);
+}
